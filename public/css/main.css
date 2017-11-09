@@ -1,0 +1,44 @@
+html {
+
+	font-size: 18px;
+}
+
+h1 {
+
+	border-bottom: 3px solid black;
+	padding: .5rem;
+}
+
+#taskInput {
+
+	margin: .5rem;
+	margin-top: 2rem;
+	margin-left: 1rem;
+	outline-color: black;
+}
+
+#submitButton {
+
+	margin: .5rem;
+	margin-top: 1rem;
+	margin-left: 1rem;
+	border-radius: .25rem;
+	background-color: #353A3F;
+	color: white;
+}
+
+.completed {
+
+	text-decoration: line-through;
+	opacity: 0.5;
+}
+
+.task-list {
+
+	list-style: square;
+	border: 2px solid black;
+	margin: 1rem;
+	overflow: auto;
+
+}
+

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.3/vue.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+	<link rel="stylesheet" href="/css/main.css">
+	<title>MongoDB To-Do List</title>
+</head>
+<body>
+<div id="app">
+	<h1>To Do List</h1>
+		<div class="row">
+			<div class="col-xs-12 col-sm-8 col-md-6">
+				<form id="todoForm" v-on:submit="postNewTask">
+					<input id="taskInput" class="col-xs-12 col-sm-8 col-md-6" type="text" placeholder="enter new task" v-model='newTasks.taskName' autofocus="autofocus">
+					<input id="submitButton" type="submit" value="Add Task">
+				</form>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-12 col-sm-8 col-md-6 col-lg-4">
+				<ul class="task-list">
+					<li v-for="task in tasks" v-bind:class="{'completed' : isCompleted}" v-on:click="completeTask(task)">
+						<span>{{task.taskName}}</span>
+						<button v-on:click="removeTask(task)" type="button" class="close" aria-label="Close">
+						  <span aria-hidden="true">&times;</span>
+						</button>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+<script type="text/javascript" src="/js/main.js"></script>
+</body>
+</html>
