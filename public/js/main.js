@@ -18,7 +18,7 @@ var mainVm = new Vue({
 
 			event.preventDefault()
 
-			var task = mainVm.newTasks
+			var task = mainVm.newTasks				
 			
 			// console.log(task)
 
@@ -35,10 +35,13 @@ var mainVm = new Vue({
 				
 				mainVm.getNewTasks()
 
-				mainVm.newTasks.taskName = ""		
+
+
 
 
 			})
+				
+				mainVm.newTasks.taskName = ""
 
 		}
 
@@ -55,15 +58,6 @@ var mainVm = new Vue({
 
 			})
 		},
-
-		completeTask: function(task){
-
-			task.isCompleted = !task.isCompleted
-
-			console.log(task.isCompleted)
-
-		},
-
 
 		removeTask: function(task){
 

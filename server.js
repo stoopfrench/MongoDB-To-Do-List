@@ -1,7 +1,6 @@
 var express = require('express')
 var bodyParser = require('body-parser')
 var mongo = require('mongodb')
-var ObjectId = require('mongodb').ObjectID
 
 var app = express()
 
@@ -28,9 +27,15 @@ MongoClient.connect('mongodb://localHost:27017/mongo-todo', function(err, db) {
 		res.sendFile('./html/index.html', {root: './public'})
 	})
 
+//STORE NEW TASK
 	app.post('/todo', function(req, res){
 
 		body = req.body
+
+		if (body.isCompleted === 'false') {
+
+			body.isCompleted = false
+		}
 		
 		// console.log(body)	
 
@@ -49,6 +54,7 @@ MongoClient.connect('mongodb://localHost:27017/mongo-todo', function(err, db) {
 
 	})
 
+//GET NEW TASKS
 	app.get('/todo', function(req, res){
 
 		db.collection('Tasks').find().toArray(function(err, docs){
@@ -64,6 +70,7 @@ MongoClient.connect('mongodb://localHost:27017/mongo-todo', function(err, db) {
 		})
 	})
 
+//REMOVE TASK
 	app.post('/delete', function(req, res){
 
 		body = req.body
