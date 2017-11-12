@@ -36,8 +36,11 @@ MongoClient.connect('mongodb://localHost:27017/mongo-todo', function(err, db) {
 
 			body.isCompleted = false
 		}
-		
-		// console.log(body)	
+
+		else if (body.isCompleted === 'true'){
+
+			body.isCompleted = true
+		}	
 
 			db.collection('Tasks').insert(body, function(err){
 
@@ -55,6 +58,7 @@ MongoClient.connect('mongodb://localHost:27017/mongo-todo', function(err, db) {
 	})
 
 //GET NEW TASKS
+	
 	app.get('/todo', function(req, res){
 
 		db.collection('Tasks').find().toArray(function(err, docs){
@@ -70,12 +74,52 @@ MongoClient.connect('mongodb://localHost:27017/mongo-todo', function(err, db) {
 		})
 	})
 
-//REMOVE TASK
-	app.post('/delete', function(req, res){
+//UPDATE TASK
+
+	app.post('/update', function(req, res){
 
 		body = req.body
 
-		// console.log(body)
+		if(body.isCompleted === 'false'){
+
+			db.collection('Tasks').update({taskName: body.taskName}, {$set:{isCompleted: false}}, function(err, results){
+
+				if(err){
+
+					console.log(err)
+				}
+
+				else {
+				
+				res.send(body.taskName + results)
+
+				}	
+			})
+		}
+
+		else if (body.isCompleted === 'true') {
+
+			db.collection('Tasks').update({taskName: body.taskName}, {$set:{isCompleted: true}}, function(err, results){
+
+				if(err){
+
+					console.log(err)
+				}
+
+				else {
+				
+				res.send(body.taskName + results)
+
+				}	
+			})
+		}
+	})
+
+//REMOVE TASK
+	
+	app.post('/delete', function(req, res){
+
+		body = req.body
 
 		db.collection('Tasks').remove({taskName: body.taskName}, function(err, results){
 			
@@ -83,8 +127,6 @@ MongoClient.connect('mongodb://localHost:27017/mongo-todo', function(err, db) {
 
 				console.log(err)
 			}
-
-			// console.log(results)
 
 			res.send('item deleted')
 		})	

@@ -21,10 +21,12 @@ h1 {
 
 #taskInput {
 
+	padding-left: .5rem;
 	margin: .5rem;
 	margin-top: 2rem;
 	margin-left: 1rem;
 	outline-color: black;
+	max-width: 350px;
 }
 
 #submitButton {
@@ -46,12 +48,15 @@ h1 {
 
 .task-list {
 
+	position: relative;
 	list-style: none;
 	border: 2px solid black;
 	margin: 1rem;
 	overflow: auto;
 	padding-left: 2rem;
 	padding-right: 0;
+	padding-bottom: 3px;
+	width: 350px;
 
 }
 
@@ -66,6 +71,10 @@ h1 {
 	margin-right: .5rem;
 	outline: none;
 }
+
+
+
+
 
 
 

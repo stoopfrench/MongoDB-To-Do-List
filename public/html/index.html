@@ -10,30 +10,32 @@
 
 	<div id="app">
 		<h1>To Do List</h1>
-			<div class="row">
-				<div class="col-xs-12 col-sm-8 col-md-6">
-					<form id="todoForm" v-on:submit="postNewTask">
-						<input id="taskInput" class="col-6" type="text" placeholder="enter new task" v-model="newTasks.taskName" autofocus="autofocus" autocomplete="off">
-						<input id="submitButton" type="submit" value="Add Task">
-					</form>
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-12">
+						<form id="todoForm" v-on:submit="postNewTask">
+							<input id="taskInput" class="col-6" type="text" placeholder="enter new task" v-model="newTasks.taskName" autofocus="autofocus" autocomplete="off">
+							<input id="submitButton" type="submit" value="Add Task">
+						</form>
+					</div>
 				</div>
-			</div>
 
-			<div class="row">
-				<div class="col-xs-12 col-sm-8 col-md-6 col-lg-4">
-					<ul class="task-list">
-						<li v-for="task in tasks">
-							<span class="form-check">
-							    <input id="completeCheckbox" class="form-check-input" type="checkbox" name="complete" v-model="task.isCompleted">
-							</span>
-							<span v-bind:class="{completed: task.isCompleted}">{{task.taskName}}</span>
-							<button v-on:click="removeTask(task)" type="button" class="close" aria-label="Close">
-							  <span aria-hidden="true">&times;</span>
-							</button>
-						</li>
-					</ul>
+				<div class="row">
+					<div class="col-xs-12 col-sm-8 col-md-6 col-lg-4">
+						<ul class="task-list">
+							<li v-for="task in tasks">
+								<span class="form-check">
+								    <input class="form-check-input" type="checkbox" name="complete" v-model="task.isCompleted" v-on:change="updateTask(task)">
+								</span>
+								<span v-bind:class="{completed: task.isCompleted}">{{task.taskName}}</span>
+								<button v-on:click="removeTask(task)" type="button" class="close" aria-label="Close">
+								  <span aria-hidden="true">&times;</span>
+								</button>
+							</li>
+						</ul>
+					</div>
 				</div>
-			</div>
+			</div>	
 	</div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>

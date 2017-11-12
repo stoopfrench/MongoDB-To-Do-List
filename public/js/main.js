@@ -19,8 +19,6 @@ var mainVm = new Vue({
 			event.preventDefault()
 
 			var task = mainVm.newTasks				
-			
-			// console.log(task)
 
 			if(task.taskName === "") {
 				
@@ -30,22 +28,14 @@ var mainVm = new Vue({
 			else {
 		
 			$.post('/todo', task, function(data){
-
-				// console.log(data)
 				
 				mainVm.getNewTasks()
-
-
-
-
 
 			})
 				
 				mainVm.newTasks.taskName = ""
-
 		}
-
-		
+	
 	},
 
 		getNewTasks: function(){
@@ -53,9 +43,18 @@ var mainVm = new Vue({
 			$.get('/todo', function(data){
 
 				mainVm.tasks = data
-				
-				// console.log(data)
 
+			})
+		},
+
+		updateTask: function(task){
+
+
+			$.post('/update', task, function(data){
+
+				console.log('updated ' + task.taskName)
+
+				// console.log(data)
 			})
 		},
 
@@ -66,12 +65,11 @@ var mainVm = new Vue({
 
 	      	this.tasks.splice(index, 1);
 
-	      	$.post('/delete', {taskName:task.taskName}, function(data){
+	      	$.post('/delete', task, function(data){
 
 	      		console.log('deleted: ' + task.taskName)
 
 	      	})
-    
 		},
 
 },
