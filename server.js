@@ -133,10 +133,11 @@ MongoClient.connect('mongodb://localHost:27017/mongo-todo', function(err, db) {
 	})
 
 
+	var port = 8084
 
-	app.listen(8082, function(){
+	app.listen(port, function(){
 
-		console.log("'mongo-todo' running on port 8082")
+		console.log("'mongo-todo' running on port " + port)
 	})
 })
 
